@@ -12,7 +12,7 @@ def tick args
     args.state.player.slash_frames  = 16
     args.state.player.is_moving = false
     args.state.player.is_attacking = false
-
+    
     render args
     input args
     calc_slash args
@@ -102,52 +102,52 @@ def movement args
     #Movement For Movile Devices.
     elsif !args.inputs.finger_one.nil?
         #Movement to the right
-        if (args.inputs.finger_one.x >= 160 && args.inputs.finger_one.x <=  220 && args.inputs.finger_one.y >= 120 && args.inputs.finger_one.y <= 180)
+        if (args.inputs.finger_one.x >= 155 && args.inputs.finger_one.x <=  225 && args.inputs.finger_one.y >= 120 && args.inputs.finger_one.y <= 180)
             args.state.player.x += 5
             args.state.player.direction = 1
             args.state.player.started_running_at ||= args.state.tick_count
             args.outputs.sprites << running_sprite(args)
         #movement to the left
-        elsif (args.inputs.finger_one.x >= 0 && args.inputs.finger_one.x <= 60 && args.inputs.finger_one.y >= 120 && args.inputs.finger_one.y <= 180 )
+        elsif (args.inputs.finger_one.x >= 0 && args.inputs.finger_one.x <= 65 && args.inputs.finger_one.y >= 120 && args.inputs.finger_one.y <= 180 )
             args.state.player.x -= 5
             args.state.player.direction = -1
             args.state.player.started_running_at ||= args.state.tick_count
             args.outputs.sprites << running_sprite(args)
         #Movement Up
-        elsif (args.inputs.finger_one.x >= 80 && args.inputs.finger_one.x <= 140 && args.inputs.finger_one.y >= 180 && args.inputs.finger_one.y <= 240 )
+        elsif (args.inputs.finger_one.x >= 80 && args.inputs.finger_one.x <= 140 && args.inputs.finger_one.y >= 180 && args.inputs.finger_one.y <= 260)
             args.state.player.direction = 2
             args.state.player.y += 3.33
             args.state.player.started_running_at ||= args.state.tick_count
             args.outputs.sprites << running_sprite(args)
         #Movement Down
-        elsif(args.inputs.finger_one.x >= 80 && args.inputs.finger_one.x <= 140 && args.inputs.finger_one.y >= 60 && args.inputs.finger_one.y <= 120 )
+        elsif(args.inputs.finger_one.x >= 80 && args.inputs.finger_one.x <= 140 && args.inputs.finger_one.y >= 55 && args.inputs.finger_one.y <= 125)
             args.state.player.direction = -2
             args.state.player.y -= 3.33
             args.state.player.started_running_at ||= args.state.tick_count
             args.outputs.sprites << running_sprite(args)
         #Movement right and up
-        elsif (args.inputs.finger_one.x >= 160 && args.inputs.finger_one.x <=  220 && args.inputs.finger_one.y >= 180 && args.inputs.finger_one.y <= 240)
+        elsif (args.inputs.finger_one.x >= 160 && args.inputs.finger_one.x <=  225 && args.inputs.finger_one.y >= 180 && args.inputs.finger_one.y <= 250)
             args.state.player.x += 5
             args.state.player.y += 3.33
             args.state.player.direction = 1
             args.state.player.started_running_at ||= args.state.tick_count
             args.outputs.sprites << running_sprite(args)
         #Right and down
-        elsif (args.inputs.finger_one.x >= 160 && args.inputs.finger_one.x <= 220 && args.inputs.finger_one.y >= 60 && args.inputs.finger_one.y <= 120)
+        elsif (args.inputs.finger_one.x >= 160 && args.inputs.finger_one.x <= 220 && args.inputs.finger_one.y >= 55 && args.inputs.finger_one.y <= 120)
             args.state.player.x += 5
             args.state.player.y -= 3.33
             args.state.player.direction = 1
             args.state.player.started_running_at ||= args.state.tick_count
             args.outputs.sprites << running_sprite(args)
         #Left and up
-        elsif (args.inputs.finger_one.x >= 0 && args.inputs.finger_one.x <= 60 && args.inputs.finger_one.y >= 180 && args.inputs.finger_one.y <= 240)
+        elsif (args.inputs.finger_one.x >= 0 && args.inputs.finger_one.x <= 65 && args.inputs.finger_one.y >= 180 && args.inputs.finger_one.y <= 240)
             args.state.player.x -= 5
             args.state.player.y += 3.33
             args.state.player.direction = -1
             args.state.player.started_running_at ||= args.state.tick_count
             args.outputs.sprites << running_sprite(args)
         #Left and down
-        elsif   (args.inputs.finger_one.x >= 0 && args.inputs.finger_one.x <= 60 && args.inputs.finger_one.y >= 60 && args.inputs.finger_one.y <= 120)
+        elsif   (args.inputs.finger_one.x >= 0 && args.inputs.finger_one.x <= 65 && args.inputs.finger_one.y >= 55 && args.inputs.finger_one.y <= 120)
             args.state.player.x -= 5
             args.state.player.y -= 3.33
             args.state.player.direction = -1
@@ -156,9 +156,7 @@ def movement args
         else
             args.state.player.started_running_at = nil
         end
-    
-    
-        
+
     end
     
    
@@ -194,7 +192,7 @@ def render args
     args.outputs.borders  << [160,120,60,60]
     args.outputs.borders  << [85,180,60,60]
     args.outputs.borders  << [85,60,60,60]
-    args.outputs.borders  << [1100,120,60,60]
+    args.outputs.borders  << [1100,120,70,70]
     if args.state.player.slash_at
         args.outputs.sprites << attack_move(args)
         args.outputs.borders << args.state.player.slash_collision_rect
@@ -208,11 +206,39 @@ def slash_initiate? args
     if args.inputs.controller_one.key_down.a || args.inputs.keyboard.key_down.j 
     return args.state.tick_count
     end
-    if (!args.inputs.finger_one.nil?&&(args.inputs.finger_one.x >= 1100 && args.inputs.finger_one.x <= 1150 && args.inputs.finger_one.y >= 120 && args.inputs.finger_one.y <= 170 ))
+    if (!args.inputs.finger_one.nil?&&(args.inputs.finger_one.x >= 1095 && args.inputs.finger_one.x <= 1170 && args.inputs.finger_one.y >= 120 && args.inputs.finger_one.y <= 190 ))
         args.inputs.finger_one.down_at
-    elsif (!args.inputs.finger_two.nil?&&(args.inputs.finger_two.x >= 1100 && args.inputs.finger_two.x <= 1150 && args.inputs.finger_two.y >= 120 && args.inputs.finger_two.y <= 170 ))
+    elsif (!args.inputs.finger_two.nil?&&(args.inputs.finger_two.x >=  1095  && args.inputs.finger_two.x <= 1170 && args.inputs.finger_two.y >= 120 && args.inputs.finger_two.y <= 190 ))
         args.inputs.finger_two.down_at
+
     end
+=begin
+        args.state.shooty_finger = args.inputs.finger_one 
+        if !args.state.shooty_finger.nil?
+            saw_it = false
+            args.state.inputs.touch.each { |f|   # try each known touch
+                if f == args.state.shooty_finger
+                    saw_it = true
+                    break
+                end
+            }
+            args.state.shooty_finger = nil if !saw_it
+        end
+    #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        if args.state.shooty_finger.nil?
+            if !args.state.shooty_finger.nil?  # no move finger? No shoot finger.
+                args.state.inputs.touch.each { |f|   # try each known touch
+                    if f.touch_order > f.state.shooty_finger.touch_order  # happened after move finger? Take it.
+                        args.state.shooty_finger = f
+                        break
+                    end
+                }
+            end
+        end
+        if (!args.state.shooty_finger.nil?)&& (args.state.shooty_finger.x >=  1095  && args.state.shooty_finger.x <= 1170 && args.state.shooty_finger.y >= 120 && args.state.shooty_finger.y <= 190)
+            args.state.shooty_finger.down_at
+        end
+=end
 end
 
 def input args

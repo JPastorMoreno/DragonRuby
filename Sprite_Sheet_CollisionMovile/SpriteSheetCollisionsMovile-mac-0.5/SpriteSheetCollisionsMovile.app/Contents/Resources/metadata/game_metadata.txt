@@ -1,0 +1,6 @@
+devid=JAWFTD
+devtitle=JAWFTD
+gameid=SpriteSheetCollisionsMovile
+gametitle=SpriteSheetCollisionsMovile
+version=0.5
+icon=metadata/icon.png
