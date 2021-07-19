@@ -226,6 +226,7 @@ class Enemy
      tile_w: 49,
      tile_h: 48,
      path: "tfgSprites/Monsters/monsters.png",
+        
    }
 
   end
